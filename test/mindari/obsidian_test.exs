@@ -6,7 +6,7 @@ defmodule Mindari.ObsidianTest do
       markdown = "Check out [Google](https://google.com) for search."
 
       expected =
-        "<p>Check out <a href=\"https://google.com\" target=\"_blank\" rel=\"noopener noreferrer\">Google <span>↗</span></a> for search.</p>"
+        "Check out <a href=\"https://google.com\" target=\"_blank\" rel=\"noopener noreferrer\">Google <span>↗</span></a> for search."
 
       result = Mindari.Obsidian.markdown_to_html(markdown)
       assert result == expected
@@ -17,7 +17,7 @@ defmodule Mindari.ObsidianTest do
         "Visit [Google](https://google.com) or [GitHub](https://github.com) for more info."
 
       expected =
-        "<p>Visit <a href=\"https://google.com\" target=\"_blank\" rel=\"noopener noreferrer\">Google <span>↗</span></a> or <a href=\"https://github.com\" target=\"_blank\" rel=\"noopener noreferrer\">GitHub <span>↗</span></a> for more info.</p>"
+        "Visit <a href=\"https://google.com\" target=\"_blank\" rel=\"noopener noreferrer\">Google <span>↗</span></a> or <a href=\"https://github.com\" target=\"_blank\" rel=\"noopener noreferrer\">GitHub <span>↗</span></a> for more info."
 
       result = Mindari.Obsidian.markdown_to_html(markdown)
       assert result == expected
@@ -27,7 +27,7 @@ defmodule Mindari.ObsidianTest do
       markdown = "See also [[Daily Notes]] and [[Project Ideas]]."
 
       expected =
-        "<p>See also <a href=\"obsidian://open?vault=Vault&file=Daily Notes\" data-obsidian-link=\"Daily Notes\">Daily Notes</a> and <a href=\"obsidian://open?vault=Vault&file=Project Ideas\" data-obsidian-link=\"Project Ideas\">Project Ideas</a>.</p>"
+        "See also <a href=\"obsidian://open?vault=Vault&file=Daily Notes\" data-obsidian-link=\"Daily Notes\">Daily Notes</a> and <a href=\"obsidian://open?vault=Vault&file=Project Ideas\" data-obsidian-link=\"Project Ideas\">Project Ideas</a>."
 
       result = Mindari.Obsidian.markdown_to_html(markdown)
       assert result == expected
@@ -37,7 +37,7 @@ defmodule Mindari.ObsidianTest do
       markdown = "Check [[My Notes]] or visit [Google](https://google.com)."
 
       expected =
-        "<p>Check <a href=\"obsidian://open?vault=Vault&file=My Notes\" data-obsidian-link=\"My Notes\">My Notes</a> or visit <a href=\"https://google.com\" target=\"_blank\" rel=\"noopener noreferrer\">Google <span>↗</span></a>.</p>"
+        "Check <a href=\"obsidian://open?vault=Vault&file=My Notes\" data-obsidian-link=\"My Notes\">My Notes</a> or visit <a href=\"https://google.com\" target=\"_blank\" rel=\"noopener noreferrer\">Google <span>↗</span></a>."
 
       result = Mindari.Obsidian.markdown_to_html(markdown)
       assert result == expected
@@ -47,7 +47,7 @@ defmodule Mindari.ObsidianTest do
       markdown = "Visit [Site with &amp; symbols](https://example.com?q=test&amp;r=1)."
 
       expected =
-        "<p>Visit <a href=\"https://example.com?q=test&amp;r=1\" target=\"_blank\" rel=\"noopener noreferrer\">Site with &amp; symbols <span>↗</span></a>.</p>"
+        "Visit <a href=\"https://example.com?q=test&amp;r=1\" target=\"_blank\" rel=\"noopener noreferrer\">Site with &amp; symbols <span>↗</span></a>."
 
       result = Mindari.Obsidian.markdown_to_html(markdown)
       assert result == expected
@@ -57,7 +57,17 @@ defmodule Mindari.ObsidianTest do
       markdown = "Reference [[Note with Spaces]] and [[Project-2023]]."
 
       expected =
-        "<p>Reference <a href=\"obsidian://open?vault=Vault&file=Note with Spaces\" data-obsidian-link=\"Note with Spaces\">Note with Spaces</a> and <a href=\"obsidian://open?vault=Vault&file=Project-2023\" data-obsidian-link=\"Project-2023\">Project-2023</a>.</p>"
+        "Reference <a href=\"obsidian://open?vault=Vault&file=Note with Spaces\" data-obsidian-link=\"Note with Spaces\">Note with Spaces</a> and <a href=\"obsidian://open?vault=Vault&file=Project-2023\" data-obsidian-link=\"Project-2023\">Project-2023</a>."
+
+      result = Mindari.Obsidian.markdown_to_html(markdown)
+      assert result == expected
+    end
+
+    test "handle multi-line content" do
+      markdown = "Line 1\n\nLine 2\n\nLine 3"
+
+      expected =
+        "<p>Line 1</p><p>Line 2</p><p>Line 3</p>"
 
       result = Mindari.Obsidian.markdown_to_html(markdown)
       assert result == expected

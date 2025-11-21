@@ -211,13 +211,29 @@ defmodule Mindari.Obsidian do
     |> String.replace(~r/^- (.+)$/m, "<li>\\1</li>")
     |> String.replace(~r/\[x\]/m, "<span>✓</span>")
     |> String.replace(~r/\[ \]/m, "<span>☐</span>")
-    |> String.replace(~r/\n\n/m, "</p><p>")
-    |> (&("<p>" <> &1 <> "</p>")).()
-    |> String.replace("<p></p>", "")
     |> String.replace(
       ~r/<li>(.+?)<\/li>/m,
       "<ul><li>\\1</li></ul>"
     )
+    |> then(fn markdown ->
+      forms = String.split(markdown, ~r/\n\n+/)
+      if Enum.count(forms) <= 1 do
+        markdown
+      else
+        forms
+        |> Enum.map(&String.trim/1)
+        |> Enum.reject(&(&1 == ""))
+        |> Enum.map(fn part ->
+          # Don't wrap headings or lists in paragraphs
+          if String.starts_with?(part, ["<h1>", "<h2>", "<h3>", "<ul>", "<li>"]) do
+            part
+          else
+            "<p>#{part}</p>"
+          end
+        end)
+        |> Enum.join("")
+      end
+    end)
   end
 
   defp parse_date_string(date_str) when is_binary(date_str) do
