@@ -43,3 +43,7 @@ priv/repo/mindari_dev.db-wal
 priv/repo/mindari_dev.db-shm
 phoenix-app-error.log
 phoenix-app.log
+
+
+# macOS 
+.DS_Store
