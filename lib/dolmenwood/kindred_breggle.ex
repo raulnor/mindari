@@ -211,7 +211,7 @@ defmodule Dolmenwood.Kindred.Breggle do
   end
 
   def roll_background, do: Enum.random(@background)
-  def roll_trinket, do: Dice.roll_table(@trinket, 1..100)
+  def roll_trinket, do: Dice.roll_table(@trinket, 100)
   def roll_head, do: Enum.random(@head)
   def roll_face, do: Enum.random(@face)
   def roll_fur, do: Enum.random(@fur)
