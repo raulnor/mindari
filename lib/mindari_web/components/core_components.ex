@@ -58,7 +58,10 @@ defmodule MindariWeb.CoreComponents do
       role="alert"
       {@rest}
     >
-      <div class="bg-secondary" style="border-radius: 1rem; padding: 0 0.5rem; margin: 0; border: 1px solid #3a3a3a;">
+      <div
+        class="bg-secondary"
+        style="border-radius: 1rem; padding: 0 0.5rem; margin: 0; border: 1px solid #3a3a3a;"
+      >
         <.icon :if={@kind == :info} name="hero-information-circle" class="size-5 shrink-0" />
         <.icon :if={@kind == :error} name="hero-exclamation-circle" class="size-5 shrink-0" />
         <div>

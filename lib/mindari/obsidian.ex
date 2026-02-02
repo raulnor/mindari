@@ -217,6 +217,7 @@ defmodule Mindari.Obsidian do
     )
     |> then(fn markdown ->
       forms = String.split(markdown, ~r/\n\n+/)
+
       if Enum.count(forms) <= 1 do
         markdown
       else

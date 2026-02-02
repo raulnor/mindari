@@ -8,21 +8,13 @@ defmodule MindariWeb.SoulLive.Index do
     ~H"""
     <h1>Example</h1>
     <form phx-submit="sum_function">
-      <input
-        type="text"
-        value={@value}
-        name="value"
-        placeholder="n"
-      />
-      <input
-        type="submit"
-        value="Sum"
-      />
+      <input type="text" value={@value} name="value" placeholder="n" />
+      <input type="submit" value="Sum" />
     </form>
     <div :if={@results != []}>
       <h3>Results:</h3>
       <ul>
-        <li :for={[n, result] <- @results}>∑(1 .. <%= n %>) = <%= result %></li>
+        <li :for={[n, result] <- @results}>∑(1 .. {n}) = {result}</li>
       </ul>
     </div>
     """
@@ -44,26 +36,29 @@ defmodule MindariWeb.SoulLive.Index do
   @impl true
   def handle_event("sum_function", %{"value" => value}, socket) do
     pid = self()
+
     Task.start(fn ->
-      result = try do
-        value = value |> String.to_integer()
-        Enum.sum(1..value)
-        # Slow version
-        # Enum.reduce(1..value, 0, fn i, acc ->
-        #   acc + i
-        # end)
-      rescue
-        _ -> :error
-      end
+      result =
+        try do
+          value = value |> String.to_integer()
+          Enum.sum(1..value)
+          # Slow version
+          # Enum.reduce(1..value, 0, fn i, acc ->
+          #   acc + i
+          # end)
+        rescue
+          _ -> :error
+        end
+
       send(pid, {:calculation_complete, value, result})
     end)
 
     results = [[value, :calculating] | socket.assigns.results] |> IO.inspect()
 
     {:noreply,
-      socket
-      |> assign(:results, results)
-      |> assign(:value, "")}
+     socket
+     |> assign(:results, results)
+     |> assign(:value, "")}
   end
 
   @impl true

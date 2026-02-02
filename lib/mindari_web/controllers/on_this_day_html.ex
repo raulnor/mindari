@@ -183,9 +183,11 @@ defmodule MindariWeb.OnThisDayHTML do
   """
   def formatted_date(month, day) do
     {{current_year, _, _}, _} = :calendar.local_time()
+
     case Date.new(current_year, month, day) do
       {:ok, date} ->
         Calendar.strftime(date, "%A, %B %d, %Y")
+
       {:error, _} ->
         "Invalid date"
     end
@@ -199,9 +201,11 @@ defmodule MindariWeb.OnThisDayHTML do
       # Handle datetime format like "2025-07-14T17:02"
       String.contains?(date_string, "T") ->
         [date_part | _] = String.split(date_string, "T")
+
         case Date.from_iso8601(date_part) do
           {:ok, date} ->
             Calendar.strftime(date, "%A, %B %d, %Y")
+
           {:error, _} ->
             date_string
         end
@@ -211,6 +215,7 @@ defmodule MindariWeb.OnThisDayHTML do
         case Date.from_iso8601(date_string) do
           {:ok, date} ->
             Calendar.strftime(date, "%A, %B %d, %Y")
+
           {:error, _} ->
             date_string
         end

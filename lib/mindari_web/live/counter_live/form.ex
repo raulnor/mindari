@@ -56,7 +56,9 @@ defmodule MindariWeb.CounterLive.Form do
 
   @impl true
   def handle_event("validate", %{"counter" => counter_params}, socket) do
-    changeset = Util.change_counter(socket.assigns.current_scope, socket.assigns.counter, counter_params)
+    changeset =
+      Util.change_counter(socket.assigns.current_scope, socket.assigns.counter, counter_params)
+
     {:noreply, assign(socket, form: to_form(changeset, action: :validate))}
   end
 

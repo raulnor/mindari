@@ -10,10 +10,12 @@ defmodule MindariWeb.OnThisDayControllerTest do
   describe "On This Day" do
     test "Renders page", %{conn: conn, user: user} do
       user = set_password(user)
+
       conn =
         post(conn, ~p"/login", %{
           "user" => %{"email" => user.email, "password" => valid_user_password()}
         })
+
       conn = get(conn, ~p"/then")
       html = html_response(conn, 200)
 
@@ -22,10 +24,12 @@ defmodule MindariWeb.OnThisDayControllerTest do
 
     test "Has link to home page", %{conn: conn, user: user} do
       user = set_password(user)
+
       conn =
         post(conn, ~p"/login", %{
           "user" => %{"email" => user.email, "password" => valid_user_password()}
         })
+
       conn = get(conn, ~p"/then")
       html = html_response(conn, 200)
 

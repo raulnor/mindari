@@ -81,7 +81,10 @@ defmodule MindariWeb.CounterLiveTest do
     test "deletes counter in listing", %{conn: conn, counter: counter} do
       {:ok, index_live, _html} = live(conn, ~p"/counter")
 
-      assert index_live |> element("#counter_collection-#{counter.id} a", "Delete") |> render_click()
+      assert index_live
+             |> element("#counter_collection-#{counter.id} a", "Delete")
+             |> render_click()
+
       refute has_element?(index_live, "#counter-#{counter.id}")
     end
   end

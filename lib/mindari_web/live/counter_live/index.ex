@@ -65,6 +65,9 @@ defmodule MindariWeb.CounterLive.Index do
   @impl true
   def handle_info({type, %Mindari.Util.Counter{}}, socket)
       when type in [:created, :updated, :deleted] do
-    {:noreply, stream(socket, :counter_collection, Util.list_counter(socket.assigns.current_scope), reset: true)}
+    {:noreply,
+     stream(socket, :counter_collection, Util.list_counter(socket.assigns.current_scope),
+       reset: true
+     )}
   end
 end
