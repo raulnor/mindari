@@ -27,6 +27,8 @@ defmodule MindariWeb.Layouts do
     default: nil,
     doc: "the current [scope](https://hexdocs.pm/phoenix/scopes.html)"
 
+  attr :current_path, :string, default: nil, doc: "the current request path"
+
   slot :inner_block, required: true
 
   def app(assigns) do
@@ -38,7 +40,7 @@ defmodule MindariWeb.Layouts do
       {render_slot(@inner_block)}
     </main>
     <footer>
-      <a href="/">Back to Home</a>
+      <a :if={@current_path != "/"} href="/">Back to Home</a>
     </footer>
     """
   end
