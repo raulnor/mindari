@@ -221,6 +221,19 @@ defmodule Dolmenwood.Kindred.Breggle do
   def roll_dress, do: Enum.random(@dress)
   def roll_beliefs, do: Enum.random(@beliefs)
 
+  @spec roll_all_details() :: %{
+          background: any(),
+          beliefs: any(),
+          demeanour: any(),
+          desires: any(),
+          dress: any(),
+          face: any(),
+          fur: any(),
+          head: any(),
+          name: nonempty_binary(),
+          speech: any(),
+          trinket: any()
+        }
   def roll_all_details do
     %{
       name: random_name(),
