@@ -1,55 +1,56 @@
-<Layouts.flash_group flash={@flash} />
-<div style="padding: 2rem 1rem; max-width: 600px; margin: 0 auto;">
-  <h1 style="margin-bottom: 2rem; text-align: center;">Mindari</h1>
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
-    <a href="/then" class="card">
-      <h2>On This Day</h2>
-      <p>Journal review</p>
-    </a>
-    <a href="/soul" class="card">
-      <h2>Soul</h2>
-      <p>Saša Jurić's concurrency example</p>
-    </a>
-    <%= if @dev_routes_enabled do %>
-      <a href="/dev/dashboard" class="card">
-        <h2>Dashboard</h2>
-        <p>Development dashboard</p>
+<Layouts.app flash={@flash}>
+  <div style="padding: 2rem 1rem; max-width: 600px; margin: 0 auto;">
+    <h1 style="margin-bottom: 2rem; text-align: center;">Mindari</h1>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+      <a href="/then" class="card">
+        <h2>On This Day</h2>
+        <p>Journal review</p>
       </a>
-    <% end %>
-    <a href="/users/settings" class="card">
-      <h2>Settings</h2>
-      <p>Manage your preferences</p>
-    </a>
+      <a href="/soul" class="card">
+        <h2>Soul</h2>
+        <p>Saša Jurić's concurrency example</p>
+      </a>
+      <%= if @dev_routes_enabled do %>
+        <a href="/dev/dashboard" class="card">
+          <h2>Dashboard</h2>
+          <p>Development dashboard</p>
+        </a>
+      <% end %>
+      <a href="/users/settings" class="card">
+        <h2>Settings</h2>
+        <p>Manage your preferences</p>
+      </a>
+    </div>
   </div>
-</div>
-<style>
-  .card {
-    display: block;
-    padding: 1rem;
-    background: #1f2937;
-    border: 1px solid #374151;
-    border-radius: 0.5rem;
-    text-decoration: none;
-    color: inherit;
-    transition: all 0.2s;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-  }
+  <style>
+    .card {
+      display: block;
+      padding: 1rem;
+      background: #1f2937;
+      border: 1px solid #374151;
+      border-radius: 0.5rem;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.2s;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    }
 
-  .card:hover {
-    text-decoration: none;
-    border-color: #f1c40f;
-  }
+    .card:hover {
+      text-decoration: none;
+      border-color: #f1c40f;
+    }
 
-  .card h2 {
-    margin: 0 0 0.25rem 0;
-    font-size: 1.125rem;
-    font-weight: 600;
-    color: #f9fafb;
-  }
+    .card h2 {
+      margin: 0 0 0.25rem 0;
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: #f9fafb;
+    }
 
-  .card p {
-    margin: 0;
-    font-size: 0.875rem;
-    color: #9ca3af;
-  }
-</style>
+    .card p {
+      margin: 0;
+      font-size: 0.875rem;
+      color: #9ca3af;
+    }
+  </style>
+</Layouts.app>

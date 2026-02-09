@@ -31,15 +31,15 @@ defmodule MindariWeb.Layouts do
 
   def app(assigns) do
     ~H"""
-    <!-- You can move header here if all pages use this -->
-
-    <main class="px-4 py-20 sm:px-6 lg:px-8">
-      <div class="mx-auto max-w-2xl space-y-4">
-        {render_slot(@inner_block)}
-      </div>
-    </main>
-
     <.flash_group flash={@flash} />
+    <header>
+    </header>
+    <main>
+      {render_slot(@inner_block)}
+    </main>
+    <footer>
+      <a href="/">Back to Home</a>
+    </footer>
     """
   end
 

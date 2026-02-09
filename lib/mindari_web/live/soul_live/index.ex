@@ -6,6 +6,7 @@ defmodule MindariWeb.SoulLive.Index do
   @impl true
   def render(assigns) do
     ~H"""
+    <Layouts.app flash={@flash}>
     <h1>Example</h1>
     <form phx-submit="sum_function">
       <input type="text" value={@value} name="value" placeholder="n" />
@@ -17,6 +18,7 @@ defmodule MindariWeb.SoulLive.Index do
         <li :for={[n, result] <- @results}>∑(1 .. {n}) = {result}</li>
       </ul>
     </div>
+    </Layouts.app>
     """
   end
 
